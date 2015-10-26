@@ -1,12 +1,13 @@
-﻿using System;
+﻿// Author: Tung To
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using Squirrel;
-
-
+using System.Xml;
 
 namespace UT_Course_Database
 {
@@ -15,6 +16,8 @@ namespace UT_Course_Database
 
 
         public static List<Course> list = new List<Course>();
+
+        Version applicationVersion = new Version("0.1.1");
 
         public Form1()
         {
@@ -34,6 +37,7 @@ namespace UT_Course_Database
 
             if(temp.Split('=')[1] =="0")
                 Shown += new EventHandler(showHelp);
+
         }
 
         private void showHelp(object sender, EventArgs e)
@@ -92,7 +96,7 @@ namespace UT_Course_Database
 
             if(comboBox1.SelectedIndex==0 && comboBox2.SelectedIndex == 0 && comboBox3.SelectedIndex == 0)
             {
-                MessageBox.Show("Please specify some search queries");
+                MessageBox.Show("Please specify some search queries", "UT Semester Manager");
             }
             else
             {
@@ -187,7 +191,7 @@ namespace UT_Course_Database
             }
 
             else
-                MessageBox.Show("Select a semester");
+                MessageBox.Show("Select a semester", "UT Semester Manager");
 
         }
 
@@ -346,7 +350,7 @@ namespace UT_Course_Database
             }
             catch (Exception ex)
             {
-                MessageBox.Show("This happened: "+ex.Message);
+                MessageBox.Show("This happened: "+ex.Message, "Exception");
             }
         }
 
@@ -423,6 +427,66 @@ namespace UT_Course_Database
             StreamWriter config = new StreamWriter("Resources/config.txt");
             config.WriteLine("popup=1");
             config.Close();
+        }
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string downloadUrl = "";
+            Version newVersion = null;
+            string xmlURL = "http://restaurantworldtest.comuf.com/update.xml";
+            XmlTextReader reader = null;
+            try
+            {
+                reader = new XmlTextReader(xmlURL);
+                reader.MoveToContent();
+                string elementName = "";
+                if((reader.NodeType == XmlNodeType.Element) && (reader.Name == "UT_Course_Database"))
+                {
+                    while (reader.Read())
+                    {
+                        if(reader.NodeType == XmlNodeType.Element)
+                        {
+                            elementName = reader.Name;
+                        }
+                        else
+                        {
+                            if((reader.NodeType == XmlNodeType.Text) && (reader.HasValue))
+                            {
+                                switch (elementName)
+                                {
+                                    case "version":
+                                        newVersion = new Version(reader.Value);
+                                        break;
+                                    case "url":
+                                        downloadUrl = reader.Value;
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception");
+            }
+
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+            }
+
+            if(applicationVersion.CompareTo(newVersion) > 0)
+            {
+                DialogResult response = MessageBox.Show("Version " + newVersion.Major + "." + newVersion.Minor + "." + newVersion.Build + " is available. Do you want to update?", "Update Check", MessageBoxButtons.YesNo);
+                if (response == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(downloadUrl);
+                }
+            }
+            else
+                MessageBox.Show("This software is up to date.", "Update Check");
         }
     }
 }
