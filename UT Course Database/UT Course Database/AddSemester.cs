@@ -26,21 +26,14 @@ namespace UT_Course_Database
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            
-
-            if (tbYear.Text.Length != 4)
-                MessageBox.Show("Year is not 4-digits");
+            int k = 0;
+            if (!Int32.TryParse(tbYear.Text, out k))
+                MessageBox.Show("Enter only numbers for the 'year' field.", "UT Semesters Manager");
             else
             {
-                int k = 0;
-                if (!Int32.TryParse(tbYear.Text, out k))
-                    MessageBox.Show("Enter only numbers for the 'year' field.");
-                else
-                {
-                    sem = cbSem.Text;
-                    year = tbYear.Text;
-                    this.Visible = false;
-                }
+                sem = cbSem.Text;
+                year = tbYear.Text;
+                this.Visible = false;
             }
         }
     }

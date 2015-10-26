@@ -41,6 +41,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -57,6 +58,7 @@
             this.lbSearchResults = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnCheckReq = new System.Windows.Forms.Button();
             this.rtbNotes = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -66,7 +68,6 @@
             this.lbSemesters = new System.Windows.Forms.ListBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -76,18 +77,20 @@
             // tbEnter
             // 
             this.tbEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbEnter.Location = new System.Drawing.Point(14, 19);
+            this.tbEnter.Location = new System.Drawing.Point(19, 23);
+            this.tbEnter.Margin = new System.Windows.Forms.Padding(4);
             this.tbEnter.Name = "tbEnter";
-            this.tbEnter.Size = new System.Drawing.Size(94, 20);
+            this.tbEnter.Size = new System.Drawing.Size(124, 23);
             this.tbEnter.TabIndex = 15;
             this.tbEnter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbEnter_KeyDown);
             // 
             // btnEnter
             // 
             this.btnEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnter.Location = new System.Drawing.Point(114, 17);
+            this.btnEnter.Location = new System.Drawing.Point(152, 21);
+            this.btnEnter.Margin = new System.Windows.Forms.Padding(4);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(75, 23);
+            this.btnEnter.Size = new System.Drawing.Size(100, 28);
             this.btnEnter.TabIndex = 16;
             this.btnEnter.Text = "Enter";
             this.btnEnter.UseVisualStyleBackColor = true;
@@ -96,18 +99,20 @@
             // rtbOutput
             // 
             this.rtbOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbOutput.Location = new System.Drawing.Point(14, 45);
+            this.rtbOutput.Location = new System.Drawing.Point(19, 55);
+            this.rtbOutput.Margin = new System.Windows.Forms.Padding(4);
             this.rtbOutput.Name = "rtbOutput";
-            this.rtbOutput.Size = new System.Drawing.Size(175, 142);
+            this.rtbOutput.Size = new System.Drawing.Size(232, 174);
             this.rtbOutput.TabIndex = 17;
             this.rtbOutput.Text = "";
             // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(14, 193);
+            this.btnAdd.Location = new System.Drawing.Point(19, 238);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(175, 23);
+            this.btnAdd.Size = new System.Drawing.Size(233, 28);
             this.btnAdd.TabIndex = 18;
             this.btnAdd.Text = "Add to Semester";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -115,12 +120,14 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.optionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(561, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(748, 28);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -132,34 +139,34 @@
             this.loadToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveasToolStripMenuItem
             // 
             this.saveasToolStripMenuItem.Name = "saveasToolStripMenuItem";
-            this.saveasToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.saveasToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.saveasToolStripMenuItem.Text = "Save As..";
             this.saveasToolStripMenuItem.Click += new System.EventHandler(this.saveasToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -169,15 +176,22 @@
             this.disabToolStripMenuItem,
             this.checkForUpdatesToolStripMenuItem});
             this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
-            this.optionToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.optionToolStripMenuItem.Text = "Options";
             // 
             // disabToolStripMenuItem
             // 
             this.disabToolStripMenuItem.Name = "disabToolStripMenuItem";
-            this.disabToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.disabToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.disabToolStripMenuItem.Text = "Disable pop-up";
             this.disabToolStripMenuItem.Click += new System.EventHandler(this.disabToolStripMenuItem_Click);
+            // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
+            this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
             // comboBox1
             // 
@@ -187,23 +201,26 @@
             "(Select a Search Category)",
             "Course abbreviation",
             "Hours"});
-            this.comboBox1.Location = new System.Drawing.Point(26, 52);
+            this.comboBox1.Location = new System.Drawing.Point(35, 64);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(156, 21);
+            this.comboBox1.Size = new System.Drawing.Size(207, 24);
             this.comboBox1.TabIndex = 1;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(188, 52);
+            this.textBox1.Location = new System.Drawing.Point(251, 64);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(75, 20);
+            this.textBox1.Size = new System.Drawing.Size(99, 22);
             this.textBox1.TabIndex = 2;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(188, 79);
+            this.textBox2.Location = new System.Drawing.Point(251, 97);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(75, 20);
+            this.textBox2.Size = new System.Drawing.Size(99, 22);
             this.textBox2.TabIndex = 4;
             // 
             // comboBox2
@@ -214,16 +231,18 @@
             "(Select a Search Category)",
             "Course abbreviation",
             "Hours"});
-            this.comboBox2.Location = new System.Drawing.Point(26, 79);
+            this.comboBox2.Location = new System.Drawing.Point(35, 97);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(156, 21);
+            this.comboBox2.Size = new System.Drawing.Size(207, 24);
             this.comboBox2.TabIndex = 3;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(188, 106);
+            this.textBox3.Location = new System.Drawing.Point(251, 130);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(75, 20);
+            this.textBox3.Size = new System.Drawing.Size(99, 22);
             this.textBox3.TabIndex = 6;
             // 
             // comboBox3
@@ -234,16 +253,18 @@
             "(Select a Search Category)",
             "Course abbreviation",
             "Hours"});
-            this.comboBox3.Location = new System.Drawing.Point(26, 106);
+            this.comboBox3.Location = new System.Drawing.Point(35, 130);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(156, 21);
+            this.comboBox3.Size = new System.Drawing.Size(207, 24);
             this.comboBox3.TabIndex = 5;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(26, 187);
+            this.btnSearch.Location = new System.Drawing.Point(35, 230);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(156, 23);
+            this.btnSearch.Size = new System.Drawing.Size(208, 28);
             this.btnSearch.TabIndex = 11;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -258,9 +279,11 @@
             this.groupBox1.Controls.Add(this.rtbInfo);
             this.groupBox1.Controls.Add(this.lbSearchResults);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 27);
+            this.groupBox1.Location = new System.Drawing.Point(16, 33);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(537, 194);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(716, 239);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search for a class";
@@ -268,9 +291,10 @@
             // btnReset
             // 
             this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(176, 160);
+            this.btnReset.Location = new System.Drawing.Point(235, 197);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(4);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.Size = new System.Drawing.Size(100, 28);
             this.btnReset.TabIndex = 17;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -279,9 +303,10 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(159, 106);
+            this.radioButton3.Location = new System.Drawing.Point(212, 130);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(82, 17);
+            this.radioButton3.Size = new System.Drawing.Size(101, 21);
             this.radioButton3.TabIndex = 16;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Upper Div";
@@ -290,9 +315,10 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(71, 106);
+            this.radioButton2.Location = new System.Drawing.Point(95, 130);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(82, 17);
+            this.radioButton2.Size = new System.Drawing.Size(100, 21);
             this.radioButton2.TabIndex = 15;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Lower Div";
@@ -301,9 +327,10 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(14, 106);
+            this.radioButton1.Location = new System.Drawing.Point(19, 130);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(51, 17);
+            this.radioButton1.Size = new System.Drawing.Size(62, 21);
             this.radioButton1.TabIndex = 14;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Both";
@@ -312,9 +339,10 @@
             // rtbInfo
             // 
             this.rtbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbInfo.Location = new System.Drawing.Point(351, 19);
+            this.rtbInfo.Location = new System.Drawing.Point(468, 23);
+            this.rtbInfo.Margin = new System.Windows.Forms.Padding(4);
             this.rtbInfo.Name = "rtbInfo";
-            this.rtbInfo.Size = new System.Drawing.Size(180, 164);
+            this.rtbInfo.Size = new System.Drawing.Size(239, 201);
             this.rtbInfo.TabIndex = 13;
             this.rtbInfo.Text = "";
             // 
@@ -322,9 +350,11 @@
             // 
             this.lbSearchResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSearchResults.FormattingEnabled = true;
-            this.lbSearchResults.Location = new System.Drawing.Point(257, 19);
+            this.lbSearchResults.ItemHeight = 17;
+            this.lbSearchResults.Location = new System.Drawing.Point(343, 23);
+            this.lbSearchResults.Margin = new System.Windows.Forms.Padding(4);
             this.lbSearchResults.Name = "lbSearchResults";
-            this.lbSearchResults.Size = new System.Drawing.Size(88, 160);
+            this.lbSearchResults.Size = new System.Drawing.Size(116, 191);
             this.lbSearchResults.TabIndex = 12;
             this.lbSearchResults.SelectedIndexChanged += new System.EventHandler(this.lbSearchResults_SelectedIndexChanged);
             // 
@@ -335,15 +365,18 @@
             this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.rtbOutput);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 227);
+            this.groupBox2.Location = new System.Drawing.Point(16, 279);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(202, 223);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(269, 274);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Add Class to Selected Semester";
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnCheckReq);
             this.groupBox3.Controls.Add(this.rtbNotes);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.btnDelete);
@@ -352,38 +385,55 @@
             this.groupBox3.Controls.Add(this.btnAddSem);
             this.groupBox3.Controls.Add(this.lbSemesters);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(220, 227);
+            this.groupBox3.Location = new System.Drawing.Point(293, 279);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(329, 223);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Size = new System.Drawing.Size(439, 274);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "View Semesters";
             // 
+            // btnCheckReq
+            // 
+            this.btnCheckReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckReq.Location = new System.Drawing.Point(321, 25);
+            this.btnCheckReq.Name = "btnCheckReq";
+            this.btnCheckReq.Size = new System.Drawing.Size(108, 48);
+            this.btnCheckReq.TabIndex = 27;
+            this.btnCheckReq.Text = "Check Requirements";
+            this.btnCheckReq.UseVisualStyleBackColor = true;
+            this.btnCheckReq.Click += new System.EventHandler(this.btnCheckReq_Click);
+            // 
             // rtbNotes
             // 
             this.rtbNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbNotes.Location = new System.Drawing.Point(241, 78);
+            this.rtbNotes.Location = new System.Drawing.Point(321, 113);
+            this.rtbNotes.Margin = new System.Windows.Forms.Padding(4);
             this.rtbNotes.Name = "rtbNotes";
-            this.rtbNotes.Size = new System.Drawing.Size(82, 138);
+            this.rtbNotes.Size = new System.Drawing.Size(108, 152);
             this.rtbNotes.TabIndex = 26;
             this.rtbNotes.Text = "";
+            this.rtbNotes.Enter += new System.EventHandler(this.rtbNotes_Enter);
             this.rtbNotes.Leave += new System.EventHandler(this.rtbNotes_Leave);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(259, 62);
+            this.label1.Location = new System.Drawing.Point(347, 92);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.Size = new System.Drawing.Size(55, 17);
             this.label1.TabIndex = 25;
             this.label1.Text = "Notes:";
             // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(241, 19);
+            this.btnDelete.Location = new System.Drawing.Point(179, 237);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(82, 23);
+            this.btnDelete.Size = new System.Drawing.Size(120, 28);
             this.btnDelete.TabIndex = 24;
             this.btnDelete.Text = "Delete Class";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -393,18 +443,21 @@
             // 
             this.lbCourses.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCourses.FormattingEnabled = true;
-            this.lbCourses.Location = new System.Drawing.Point(134, 19);
+            this.lbCourses.ItemHeight = 17;
+            this.lbCourses.Location = new System.Drawing.Point(179, 23);
+            this.lbCourses.Margin = new System.Windows.Forms.Padding(4);
             this.lbCourses.Name = "lbCourses";
-            this.lbCourses.Size = new System.Drawing.Size(91, 199);
+            this.lbCourses.Size = new System.Drawing.Size(120, 191);
             this.lbCourses.TabIndex = 23;
             this.lbCourses.SelectedIndexChanged += new System.EventHandler(this.lbCourses_SelectedIndexChanged);
             // 
             // btnRemSem
             // 
             this.btnRemSem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemSem.Location = new System.Drawing.Point(6, 193);
+            this.btnRemSem.Location = new System.Drawing.Point(8, 238);
+            this.btnRemSem.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemSem.Name = "btnRemSem";
-            this.btnRemSem.Size = new System.Drawing.Size(109, 23);
+            this.btnRemSem.Size = new System.Drawing.Size(145, 28);
             this.btnRemSem.TabIndex = 22;
             this.btnRemSem.Text = "Remove Semester";
             this.btnRemSem.UseVisualStyleBackColor = true;
@@ -413,9 +466,10 @@
             // btnAddSem
             // 
             this.btnAddSem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddSem.Location = new System.Drawing.Point(6, 164);
+            this.btnAddSem.Location = new System.Drawing.Point(8, 202);
+            this.btnAddSem.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddSem.Name = "btnAddSem";
-            this.btnAddSem.Size = new System.Drawing.Size(109, 23);
+            this.btnAddSem.Size = new System.Drawing.Size(145, 28);
             this.btnAddSem.TabIndex = 21;
             this.btnAddSem.Text = "Add Semester";
             this.btnAddSem.UseVisualStyleBackColor = true;
@@ -425,9 +479,11 @@
             // 
             this.lbSemesters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSemesters.FormattingEnabled = true;
-            this.lbSemesters.Location = new System.Drawing.Point(6, 19);
+            this.lbSemesters.ItemHeight = 17;
+            this.lbSemesters.Location = new System.Drawing.Point(8, 23);
+            this.lbSemesters.Margin = new System.Windows.Forms.Padding(4);
             this.lbSemesters.Name = "lbSemesters";
-            this.lbSemesters.Size = new System.Drawing.Size(109, 134);
+            this.lbSemesters.Size = new System.Drawing.Size(144, 157);
             this.lbSemesters.TabIndex = 20;
             this.lbSemesters.SelectedIndexChanged += new System.EventHandler(this.lbSemesters_SelectedIndexChanged);
             // 
@@ -444,19 +500,12 @@
             this.openFileDialog1.Filter = "Text files|*.txt|All files|*.*";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // checkForUpdatesToolStripMenuItem
-            // 
-            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
-            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(561, 459);
+            this.ClientSize = new System.Drawing.Size(748, 565);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnSearch);
@@ -470,6 +519,7 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UT Semester Manager";
@@ -526,6 +576,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.Button btnCheckReq;
     }
 }
 

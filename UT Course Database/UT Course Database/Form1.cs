@@ -14,8 +14,8 @@ namespace UT_Course_Database
     public partial class Form1 : Form
     {
 
-
         public static List<Course> list = new List<Course>();
+        public static List<Field> fieldList = new List<Field>();
 
         Version applicationVersion = new Version("0.1.1");
 
@@ -30,6 +30,13 @@ namespace UT_Course_Database
             radioButton1.Checked = true;
 
             Read.Initiate();
+
+            StreamReader fieldRead = new StreamReader("Resources/field.txt");
+            while (!fieldRead.EndOfStream)
+            {
+                string k = fieldRead.ReadLine();
+                fieldList.Add(new Field(k.Split('\t')[0], k.Split('\t')[1]));
+            }
 
             StreamReader config = new StreamReader("Resources/config.txt");
             string temp = config.ReadLine();
@@ -242,6 +249,14 @@ namespace UT_Course_Database
             }
             else
                 btnAdd.Text = "Add To Semester";
+
+            if (lbCourses.Items.Count > 0)
+            {
+                lbCourses.SelectedIndex = 0;
+                rtbNotes.Text = semList[lbSemesters.SelectedIndex].notes[0];
+            }
+            else
+                rtbNotes.Clear();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -265,6 +280,9 @@ namespace UT_Course_Database
             {
                 semList[lbSemesters.SelectedIndex].notes[lbCourses.SelectedIndex] = rtbNotes.Text;
             }
+
+            rtbNotes.Clear();
+            rtbNotes.ReadOnly = true;
         }
 
         private void saveasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -487,6 +505,44 @@ namespace UT_Course_Database
             }
             else
                 MessageBox.Show("This software is up to date.", "Update Check");
+        }
+
+        private void btnCheckReq_Click(object sender, EventArgs e)
+        {
+            if (lbCourses.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select a course", "UT Semester Manager");
+                return;
+            }
+            
+        }
+
+        private Course toCourse(String s)
+        {
+            string k = s.ToUpper().Replace(" ", "");
+
+            foreach(Course c in list)
+            {
+                if (k == c.course.Replace(" ", "") + c.code)
+                    return c;
+            }
+
+            return null;
+        }
+
+        private bool startsWithLetter(string k)
+        {
+            string a = k.Substring(0, 1);
+            int u = 0;
+            return !int.TryParse(a, out u);
+        }
+
+        private void rtbNotes_Enter(object sender, EventArgs e)
+        {
+            if(lbCourses.SelectedIndex > 0)
+            {
+                rtbNotes.ReadOnly = false;
+            }
         }
     }
 }
