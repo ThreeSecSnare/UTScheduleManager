@@ -17,4 +17,6 @@ Ver 0.0.0 - 10/25/2015
 * Options rudimentary
 * All courses are present (notify if there are some missing)
 ```
-[Download link](http://restaurantworldtest.comuf.com/versions/)
+[Download link](http://restaurantworldtest.comuf.com/release/)
+
+[Unstable](http://restaurantworldtest.comuf.com/release/)
