@@ -192,6 +192,7 @@ namespace UT_Course_Database
                     {
                         semList[lbSemesters.SelectedIndex].list.Add(c);
                         lbCourses.Items.Add(c.course + " " + c.code);
+                        tbHours.Text = int.Parse(tbHours.Text) + c.GetHours() + "";
                         break;
                     }
                 }
@@ -209,7 +210,7 @@ namespace UT_Course_Database
             sem.VisibleChanged += new EventHandler(this.UpdateSem);
         }
 
-        public void UpdateSem(Object sender, EventArgs e)
+        public void UpdateSem(object sender, EventArgs e)
         {
             lbSemesters.Items.Add(sem.sem + " " + sem.year);
             semList.Add(new Semester(sem.sem, sem.year));
@@ -335,17 +336,13 @@ namespace UT_Course_Database
                 {
                     string[] semester = load.ReadLine().Split('\t');
                     string[] notes = load.ReadLine().Split('`');
-                    string[] courses = load.ReadLine().Split(' ');
+                    string[] courses = load.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
                     List<Course> list1 = new List<Course>();
 
                     foreach (string k in courses)
                     {
-                        foreach (Course c in list)
-                        {
-                            if (c.course.Replace(" ", "") + c.code == k)
-                                list1.Add(c);
-                        }
+                        list1.Add(toCourse(k));
                     }
 
                     semList.Add(new Semester(semester[0], semester[1], list1, notes));
@@ -361,6 +358,15 @@ namespace UT_Course_Database
                     }
                 }
 
+                int hours = 0;
+
+                foreach(Course c in semList[0].list)
+                {
+                    hours += c.GetHours();
+                }
+
+                tbHours.Text = hours + "";
+
                 load.Close();
 
                 lbSemesters.SelectedIndex = 0;
@@ -368,7 +374,7 @@ namespace UT_Course_Database
             }
             catch (Exception ex)
             {
-                MessageBox.Show("This happened: "+ex.Message, "Exception");
+                MessageBox.Show("This happened: "+ex, "Exception");
             }
         }
 
@@ -395,10 +401,19 @@ namespace UT_Course_Database
                     }
                 }
 
-                lbCourses.Items.RemoveAt(index);
-                lbCourses.SelectedIndex = index;
+                tbHours.Text = int.Parse(tbHours.Text) - toCourse(lbCourses.Items[index].ToString()).GetHours() + "";
 
-                lbCourses.Focus();
+                lbCourses.Items.RemoveAt(index);
+
+                if(lbCourses.Items.Count != 0)
+                {
+                    if(lbCourses.Items.Count > 1)
+                    {
+                        lbCourses.SelectedIndex = index - 1;
+                    }
+                    else
+                        lbCourses.SelectedIndex = 0;
+                }
 
             }
         }
@@ -539,7 +554,7 @@ namespace UT_Course_Database
 
         private void rtbNotes_Enter(object sender, EventArgs e)
         {
-            if(lbCourses.SelectedIndex > 0)
+            if(lbCourses.SelectedIndex > -1)
             {
                 rtbNotes.ReadOnly = false;
             }
