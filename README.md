@@ -19,4 +19,4 @@ Ver 0.0.0 - 10/25/2015
 ```
 [Download link](http://restaurantworldtest.comuf.com/release/)
 
-[Unstable](http://restaurantworldtest.comuf.com/release/)
+[Unstable](http://restaurantworldtest.comuf.com/unstable/)
