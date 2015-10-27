@@ -23,9 +23,11 @@ namespace UT_Course_Database
         {
             InitializeComponent();
 
-            comboBox1.Text = "(Select a Search Category)";
-            comboBox2.Text = "(Select a Search Category)";
-            comboBox3.Text = "(Select a Search Category)";
+            string defaulttext = "(Select a Search Category)";
+
+            comboBox1.Text = defaulttext;
+            comboBox2.Text = defaulttext;
+            comboBox3.Text = defaulttext;
 
             radioButton1.Checked = true;
 
@@ -49,7 +51,9 @@ namespace UT_Course_Database
                 Shown += new EventHandler(showHelp);
             }
             else
+            {
                 disabToolStripMenuItem.Checked = true;
+            }
 
             if (config.IsUnstable)
             {
@@ -64,7 +68,6 @@ namespace UT_Course_Database
         {
             Help help = new Help();
             help.Show();
-
         }
 
         List<Course> results;
@@ -84,7 +87,7 @@ namespace UT_Course_Database
             if (radioButton2.Checked)
                 foreach (Course c in results.ToList())
                 {
-                    if (c.GetDivision() != "l")
+                    if (!c.IsUpperDiv())
                     {
                         results.Remove(c);
                     }
@@ -93,7 +96,7 @@ namespace UT_Course_Database
             else if (radioButton3.Checked)
                 foreach (Course c in results.ToList())
                 {
-                    if (c.GetDivision() != "u")
+                    if (c.IsUpperDiv())
                     {
                         results.Remove(c);
                     }
@@ -123,6 +126,8 @@ namespace UT_Course_Database
                 foreach (Course c in results)
                 {
                     lbSearchResults.Items.Add(c.course + " " + c.code);
+                    if (c.IsUpperDiv())
+                        var lbi= lbSearchResults.Items[lbSearchResults.Items.IndexOf(c.course + " " + c.code)] as ListBoxItem;
                 }
             }
             

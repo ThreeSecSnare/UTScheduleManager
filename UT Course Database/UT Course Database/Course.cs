@@ -25,13 +25,11 @@ namespace UT_Course_Database
         public string name { get; set; }
         public string description { get; set; }
 
-        public string GetDivision()
+        public bool IsUpperDiv()
         {
             string h = code.Substring(1, 1);
             int i = Int32.Parse(h);
-            if (i > 1)
-                return "u";
-            return "l";
+            return i > 1;
         }
 
         public int GetHours()
