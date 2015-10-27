@@ -134,6 +134,7 @@
     <Compile Include="AddSemester.Designer.cs">
       <DependentUpon>AddSemester.cs</DependentUpon>
     </Compile>
+    <Compile Include="Config.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="CourseFile.cs" />
     <Compile Include="Field.cs" />

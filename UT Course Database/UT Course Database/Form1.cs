@@ -13,11 +13,11 @@ namespace UT_Course_Database
 {
     public partial class Form1 : Form
     {
+        Version applicationVersion = new Version("0.2.0");
 
         public static List<Course> list = new List<Course>();
         public static List<Field> fieldList = new List<Field>();
-
-        Version applicationVersion = new Version("0.1.1");
+        Config config;
 
         public Form1()
         {
@@ -38,12 +38,25 @@ namespace UT_Course_Database
                 fieldList.Add(new Field(k.Split('\t')[0], k.Split('\t')[1]));
             }
 
-            StreamReader config = new StreamReader("Resources/config.txt");
-            string temp = config.ReadLine();
-            config.Close();
+            fieldRead.Close();
 
-            if(temp.Split('=')[1] =="0")
+            StreamReader configReader = new StreamReader("Resources/config.txt");
+            config = new Config(configReader.ReadToEnd());
+            configReader.Close();
+
+            if (config.ShowHelp)
+            {
                 Shown += new EventHandler(showHelp);
+            }
+            else
+                disabToolStripMenuItem.Checked = true;
+
+            if (config.IsUnstable)
+            {
+                useUnstableToolStripMenuItem.Enabled = false;
+            }
+            else
+                useStableToolStripMenuItem.Enabled = false;
 
         }
 
@@ -255,9 +268,19 @@ namespace UT_Course_Database
             {
                 lbCourses.SelectedIndex = 0;
                 rtbNotes.Text = semList[lbSemesters.SelectedIndex].notes[0];
+
+                int hours = 0;
+                foreach (string n in lbCourses.Items)
+                {
+                    hours += toCourse(n).GetHours();
+                }
+                tbHours.Text = hours + "";
             }
             else
+            {
                 rtbNotes.Clear();
+                tbHours.Text = "0";
+            }
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -369,6 +392,12 @@ namespace UT_Course_Database
 
                 load.Close();
 
+                if (config.IsUnstable)
+                {
+                    useStableToolStripMenuItem.Enabled = true;
+                    useUnstableToolStripMenuItem.Enabled = false;
+                }
+
                 lbSemesters.SelectedIndex = 0;
                 lbCourses.SelectedIndex = 0;
             }
@@ -457,15 +486,16 @@ namespace UT_Course_Database
 
         private void disabToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StreamWriter config = new StreamWriter("Resources/config.txt");
-            config.WriteLine("popup=1");
-            config.Close();
+            config.ShowHelp = !config.ShowHelp;
+            config.Save();
         }
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string downloadUrl = "";
+            string downloadUrlu = "";
             Version newVersion = null;
+            Version newVersionu = null;
             string xmlURL = "http://restaurantworldtest.comuf.com/update.xml";
             XmlTextReader reader = null;
             try
@@ -490,8 +520,14 @@ namespace UT_Course_Database
                                     case "version":
                                         newVersion = new Version(reader.Value);
                                         break;
+                                    case "versionu":
+                                        newVersionu = new Version(reader.Value);
+                                        break;
                                     case "url":
                                         downloadUrl = reader.Value;
+                                        break;
+                                    case "urlu":
+                                        downloadUrlu = reader.Value;
                                         break;
                                 }
                             }
@@ -510,16 +546,32 @@ namespace UT_Course_Database
                     reader.Close();
             }
 
-            if(applicationVersion.CompareTo(newVersion) > 0)
+            if (!config.IsUnstable)
             {
-                DialogResult response = MessageBox.Show("Version " + newVersion.Major + "." + newVersion.Minor + "." + newVersion.Build + " is available. Do you want to update?", "Update Check", MessageBoxButtons.YesNo);
-                if (response == DialogResult.Yes)
+                if (applicationVersion.CompareTo(newVersion) < 0)
                 {
-                    System.Diagnostics.Process.Start(downloadUrl);
+                    DialogResult response = MessageBox.Show("Version " + newVersion.Major + "." + newVersion.Minor + "." + newVersion.Build + " is available. Do you want to update?", "Update Check", MessageBoxButtons.YesNo);
+                    if (response == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(downloadUrl);
+                    }
                 }
+                else
+                    MessageBox.Show("This software is up to date.", "Update Check");
             }
             else
-                MessageBox.Show("This software is up to date.", "Update Check");
+            {
+                if (applicationVersion.CompareTo(newVersionu) < 0)
+                {
+                    DialogResult response = MessageBox.Show("Unstable Version " + newVersionu.Major + "." + newVersionu.Minor + "." + newVersionu.Build + "." + newVersionu.Revision + " is available. Do you want to update?", "Update Check", MessageBoxButtons.YesNo);
+                    if (response == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(downloadUrlu);
+                    }
+                }
+                else
+                    MessageBox.Show("This software is up to date.", "Update Check");
+            }
         }
 
         private void btnCheckReq_Click(object sender, EventArgs e)
@@ -558,6 +610,39 @@ namespace UT_Course_Database
             {
                 rtbNotes.ReadOnly = false;
             }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(sender, e);
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void useStableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            config.IsUnstable = false;
+            useStableToolStripMenuItem.Enabled = false;
+            useUnstableToolStripMenuItem.Enabled = true;
+
+            config.Save();
+
+            MessageBox.Show("This software will check for the newest stable releases.", "Stable Release");
+        }
+
+        private void useUnstableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            config.IsUnstable = true;
+            useUnstableToolStripMenuItem.Enabled = false;
+            useStableToolStripMenuItem.Enabled = true;
+
+            config.Save();
+
+            MessageBox.Show("This software will check for the newest unstable releases.", "Unstable Release");
         }
     }
 }

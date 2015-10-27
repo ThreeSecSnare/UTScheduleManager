@@ -42,6 +42,8 @@
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useStableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useUnstableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -58,6 +60,8 @@
             this.lbSearchResults = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbHours = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnCheckReq = new System.Windows.Forms.Button();
             this.rtbNotes = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,8 +72,9 @@
             this.lbSemesters = new System.Windows.Forms.ListBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbHours = new System.Windows.Forms.TextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -133,7 +138,9 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
             this.saveasToolStripMenuItem,
+            this.toolStripSeparator3,
             this.loadToolStripMenuItem,
+            this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -142,28 +149,31 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveasToolStripMenuItem
             // 
             this.saveasToolStripMenuItem.Name = "saveasToolStripMenuItem";
-            this.saveasToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.saveasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveasToolStripMenuItem.Text = "Save As..";
             this.saveasToolStripMenuItem.Click += new System.EventHandler(this.saveasToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Text = "Open";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -171,16 +181,20 @@
             // 
             this.optionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.disabToolStripMenuItem,
-            this.checkForUpdatesToolStripMenuItem});
+            this.checkForUpdatesToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.useStableToolStripMenuItem,
+            this.useUnstableToolStripMenuItem});
             this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
             this.optionToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionToolStripMenuItem.Text = "Options";
             // 
             // disabToolStripMenuItem
             // 
+            this.disabToolStripMenuItem.CheckOnClick = true;
             this.disabToolStripMenuItem.Name = "disabToolStripMenuItem";
             this.disabToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.disabToolStripMenuItem.Text = "Disable pop-up";
+            this.disabToolStripMenuItem.Text = "Disable Help";
             this.disabToolStripMenuItem.Click += new System.EventHandler(this.disabToolStripMenuItem_Click);
             // 
             // checkForUpdatesToolStripMenuItem
@@ -189,6 +203,20 @@
             this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
             this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
+            // 
+            // useStableToolStripMenuItem
+            // 
+            this.useStableToolStripMenuItem.Name = "useStableToolStripMenuItem";
+            this.useStableToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.useStableToolStripMenuItem.Text = "Use Stable";
+            this.useStableToolStripMenuItem.Click += new System.EventHandler(this.useStableToolStripMenuItem_Click);
+            // 
+            // useUnstableToolStripMenuItem
+            // 
+            this.useUnstableToolStripMenuItem.Name = "useUnstableToolStripMenuItem";
+            this.useUnstableToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.useUnstableToolStripMenuItem.Text = "Use Unstable";
+            this.useUnstableToolStripMenuItem.Click += new System.EventHandler(this.useUnstableToolStripMenuItem_Click);
             // 
             // comboBox1
             // 
@@ -209,6 +237,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(75, 20);
             this.textBox1.TabIndex = 2;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // textBox2
             // 
@@ -216,6 +245,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(75, 20);
             this.textBox2.TabIndex = 4;
+            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // comboBox2
             // 
@@ -236,6 +266,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(75, 20);
             this.textBox3.TabIndex = 6;
+            this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // comboBox3
             // 
@@ -373,6 +404,24 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "View Semesters";
             // 
+            // tbHours
+            // 
+            this.tbHours.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbHours.Location = new System.Drawing.Point(181, 164);
+            this.tbHours.Name = "tbHours";
+            this.tbHours.Size = new System.Drawing.Size(43, 20);
+            this.tbHours.TabIndex = 29;
+            this.tbHours.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(131, 167);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Hours:";
+            // 
             // btnCheckReq
             // 
             this.btnCheckReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -383,6 +432,7 @@
             this.btnCheckReq.TabIndex = 27;
             this.btnCheckReq.Text = "Check Requirements";
             this.btnCheckReq.UseVisualStyleBackColor = true;
+            this.btnCheckReq.Visible = false;
             this.btnCheckReq.Click += new System.EventHandler(this.btnCheckReq_Click);
             // 
             // rtbNotes
@@ -433,7 +483,7 @@
             this.btnRemSem.Name = "btnRemSem";
             this.btnRemSem.Size = new System.Drawing.Size(109, 23);
             this.btnRemSem.TabIndex = 22;
-            this.btnRemSem.Text = "Remove Semester";
+            this.btnRemSem.Text = "Delete Semester";
             this.btnRemSem.UseVisualStyleBackColor = true;
             this.btnRemSem.Click += new System.EventHandler(this.btnRemSem_Click);
             // 
@@ -471,23 +521,20 @@
             this.openFileDialog1.Filter = "Text files|*.txt|All files|*.*";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // label2
+            // toolStripSeparator1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(131, 167);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 28;
-            this.label2.Text = "Hours:";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
             // 
-            // tbHours
+            // toolStripSeparator2
             // 
-            this.tbHours.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbHours.Location = new System.Drawing.Point(181, 164);
-            this.tbHours.Name = "tbHours";
-            this.tbHours.Size = new System.Drawing.Size(43, 20);
-            this.tbHours.TabIndex = 29;
-            this.tbHours.Text = "0";
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // Form1
             // 
@@ -567,6 +614,11 @@
         private System.Windows.Forms.Button btnCheckReq;
         private System.Windows.Forms.TextBox tbHours;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem useStableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem useUnstableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 
