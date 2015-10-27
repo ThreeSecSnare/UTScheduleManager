@@ -126,8 +126,8 @@ namespace UT_Course_Database
                 foreach (Course c in results)
                 {
                     lbSearchResults.Items.Add(c.course + " " + c.code);
-                    if (c.IsUpperDiv())
-                        var lbi= lbSearchResults.Items[lbSearchResults.Items.IndexOf(c.course + " " + c.code)] as ListBoxItem;
+                    //if (c.IsUpperDiv())
+                        //var lbi= lbSearchResults.Items[lbSearchResults.Items.IndexOf(c.course + " " + c.code)] as ListBoxItem;
                 }
             }
             
