@@ -7,6 +7,13 @@ This software is both a course look-up tool and a semester planner. Semesters ca
 
 ### PATCH NOTES:
 ```
+Ver 0.2.1 - 11/12/2015
+* Added a "View List" button that displays all courses in a pop-up window
+* Added feature to search via keywords in course titles
+* Search is now a bit smarter
+* Increase font of everything
+* Bugfix
+
 Ver 0.2.0 - 10/26/2015
 * Now displays total hours
 * Added missing courses (NSC)
