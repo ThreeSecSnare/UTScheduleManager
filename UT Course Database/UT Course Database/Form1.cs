@@ -87,7 +87,7 @@ namespace UT_Course_Database
             if (radioButton2.Checked)
                 foreach (Course c in results.ToList())
                 {
-                    if (!c.IsUpperDiv())
+                    if (c.IsUpperDiv())
                     {
                         results.Remove(c);
                     }
@@ -96,7 +96,7 @@ namespace UT_Course_Database
             else if (radioButton3.Checked)
                 foreach (Course c in results.ToList())
                 {
-                    if (c.IsUpperDiv())
+                    if (!c.IsUpperDiv())
                     {
                         results.Remove(c);
                     }
@@ -107,17 +107,23 @@ namespace UT_Course_Database
                 searchByCourse(results, textBox1);
             else if (comboBox1.SelectedIndex == 2)
                 searchByHours(results, textBox1);
+            else if (comboBox1.SelectedIndex == 3)
+                searchByKeyWord(results, textBox1);
             if (comboBox2.SelectedIndex == 1)
                 searchByCourse(results, textBox2);
             else if (comboBox2.SelectedIndex == 2)
                 searchByHours(results, textBox2);
+            else if (comboBox2.SelectedIndex == 3)
+                searchByKeyWord(results, textBox2);
             if (comboBox3.SelectedIndex == 1)
                 searchByCourse(results, textBox3);
             else if (comboBox3.SelectedIndex == 2)
                 searchByHours(results, textBox3);
+            else if (comboBox3.SelectedIndex == 3)
+                searchByKeyWord(results, textBox3);
 
 
-            if(comboBox1.SelectedIndex==0 && comboBox2.SelectedIndex == 0 && comboBox3.SelectedIndex == 0)
+            if (comboBox1.SelectedIndex==0 && comboBox2.SelectedIndex == 0 && comboBox3.SelectedIndex == 0)
             {
                 MessageBox.Show("Please specify some search queries", "UT Semester Manager");
             }
@@ -130,8 +136,6 @@ namespace UT_Course_Database
                         //var lbi= lbSearchResults.Items[lbSearchResults.Items.IndexOf(c.course + " " + c.code)] as ListBoxItem;
                 }
             }
-            
-
         }
 
         private void lbSearchResults_SelectedIndexChanged(object sender, EventArgs e)
@@ -143,14 +147,19 @@ namespace UT_Course_Database
 
         public void searchByCourse(List<Course> results, TextBox textbox)
         {
+            if (textbox.Text == "")
+            {
+                MessageBox.Show("Please fill in the blank textbox", "Query");
+                results.Clear();
+                return;
+            }
             string query = textbox.Text.ToUpper().Replace(" ", "");
 
-            foreach(Course c in results.ToList())
+            foreach (Course c in results.ToList())
             {
-                if (c.course.Replace(" ","") != query)
+                if (c.course.Replace(" ", "") != query)
                 {
                     results.Remove(c);
-                    
                 }
 
             }
@@ -158,16 +167,43 @@ namespace UT_Course_Database
 
         public void searchByHours(List<Course> results, TextBox textbox)
         {
+            if (textbox.Text == "")
+            {
+                MessageBox.Show("Please fill in the blank textbox", "Query");
+                results.Clear();
+                return;
+            }
             int query = 0;
             Int32.TryParse(textbox.Text, out query);
 
             foreach (Course c in results.ToList())
             {
                 if (c.GetHours() != query)
+                {
                     results.Remove(c);
+                }
+            }
+        }
 
+        public void searchByKeyWord(List<Course> results, TextBox textbox)
+        {
+            if (textbox.Text == "")
+            {
+                MessageBox.Show("Please fill in the blank textbox", "Query");
+                results.Clear();
+                return;
             }
 
+            string query = textbox.Text.ToUpper().Replace(" ", "");
+
+            foreach (Course c in results.ToList())
+            {
+                if (!c.name.ToUpper().Replace(" ", "").Contains(query))
+                {
+                    results.Remove(c);
+                }
+
+            }
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
@@ -501,7 +537,7 @@ namespace UT_Course_Database
             string downloadUrlu = "";
             Version newVersion = null;
             Version newVersionu = null;
-            string xmlURL = "http://restaurantworldtest.comuf.com/update.xml";
+            string xmlURL = "http://utsemman.netai.net/release/update.xml";
             XmlTextReader reader = null;
             try
             {
@@ -589,6 +625,11 @@ namespace UT_Course_Database
             
         }
 
+        /// <summary>
+        /// Returns a Course from a string with course and code. Ex.: bch 369
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         private Course toCourse(String s)
         {
             string k = s.ToUpper().Replace(" ", "");
@@ -648,6 +689,24 @@ namespace UT_Course_Database
             config.Save();
 
             MessageBox.Show("This software will check for the newest unstable releases.", "Unstable Release");
+        }
+
+        private void btnViewList_Click(object sender, EventArgs e)
+        {
+            if (lbSearchResults.Items.Count == 0)
+            {
+                MessageBox.Show("Please populate the course results box", "View List");
+                return;
+            }
+            string text = "";
+            ViewList form = new ViewList();
+            form.Show();
+            foreach (string course in lbSearchResults.Items)
+            {
+                Course c = toCourse(course);
+                text += c.course + " " + c.code + " - " + c.name + "\n\n" + c.description + "\n\n";
+            }
+            form.setText(text);
         }
     }
 }

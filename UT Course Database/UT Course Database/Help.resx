@@ -125,6 +125,13 @@
 
 PATCH NOTES:
 
+Ver 0.2.1 - 11/12/2015
+-Added a "View List" button that displays all courses in a pop-up window
+-Added feature to search via keywords in course titles
+-Search is now a bit smarter
+-Increase font of everything
+-Bugfix
+
 Ver 0.2.0 - 10/26/2015
 -Now displays total hours
 -Added missing courses (NSC)
@@ -140,7 +147,7 @@ Ver 0.1.1 - 10/26/2015
 Ver 0.0.0 - 10/25/2015
 -Birthed
 -Options rudimentary
--All courses are present (notify if there are some missing)</value>
+-All courses are present (maybe)</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
