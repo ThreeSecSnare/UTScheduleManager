@@ -13,7 +13,7 @@ namespace UT_Course_Database
 {
     public partial class Form1 : Form
     {
-        Version applicationVersion = new Version("0.2.1");
+        Version applicationVersion = new Version("0.2.0");
 
         public static List<Course> list = new List<Course>();
         public static List<Field> fieldList = new List<Field>();
@@ -442,9 +442,9 @@ namespace UT_Course_Database
                 lbSemesters.SelectedIndex = 0;
                 lbCourses.SelectedIndex = 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("This happened: "+ex, "Exception");
+                MessageBox.Show("Wrong file!", "Exception");
             }
         }
 
@@ -695,7 +695,7 @@ namespace UT_Course_Database
         {
             if (lbSearchResults.Items.Count == 0)
             {
-                MessageBox.Show("Please populate the course box", "View List");
+                MessageBox.Show("Please populate the course results box first", "View List");
                 return;
             }
             string text = "";

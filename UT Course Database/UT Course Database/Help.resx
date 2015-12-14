@@ -125,6 +125,11 @@
 
 PATCH NOTES:
 
+Ver 0.2.2 - 11/12/2015
+-Update Checker now works
+-Fixed sizing/format issues
+-Bugfix
+
 Ver 0.2.1 - 11/12/2015
 -Added a "View List" button that displays all courses in a pop-up window
 -Added feature to search via keywords in course titles

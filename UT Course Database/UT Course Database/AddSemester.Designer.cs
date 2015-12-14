@@ -38,9 +38,9 @@
             // tbYear
             // 
             this.tbYear.Location = new System.Drawing.Point(184, 46);
-            this.tbYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbYear.Margin = new System.Windows.Forms.Padding(4);
             this.tbYear.Name = "tbYear";
-            this.tbYear.Size = new System.Drawing.Size(132, 22);
+            this.tbYear.Size = new System.Drawing.Size(132, 26);
             this.tbYear.TabIndex = 0;
             // 
             // cbSem
@@ -52,15 +52,15 @@
             "Summer",
             "Spring"});
             this.cbSem.Location = new System.Drawing.Point(16, 46);
-            this.cbSem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSem.Margin = new System.Windows.Forms.Padding(4);
             this.cbSem.Name = "cbSem";
-            this.cbSem.Size = new System.Drawing.Size(160, 24);
+            this.cbSem.Size = new System.Drawing.Size(160, 28);
             this.cbSem.TabIndex = 1;
             // 
             // btnSubmit
             // 
             this.btnSubmit.Location = new System.Drawing.Point(16, 79);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(303, 50);
             this.btnSubmit.TabIndex = 2;
@@ -71,17 +71,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.Location = new System.Drawing.Point(26, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(277, 16);
+            this.label1.Size = new System.Drawing.Size(278, 20);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Select a Semester and Enter a Numeric Year:";
+            this.label1.Text = "Enter Semester and Numerical Year";
             // 
             // AddSemester
             // 
             this.AcceptButton = this.btnSubmit;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 144);
             this.Controls.Add(this.label1);
@@ -90,7 +90,7 @@
             this.Controls.Add(this.tbYear);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddSemester";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add a Semester";
