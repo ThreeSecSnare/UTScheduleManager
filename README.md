@@ -1,4 +1,4 @@
-# UTScheduleManager
+# UT Schedule Manager
 
 This software is both a course look-up tool and a semester planner. Semesters can be saved/loaded for subsequent uses. Does not support flags or checking pre-requisites/co-rerequisites.
 
