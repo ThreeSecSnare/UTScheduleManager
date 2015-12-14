@@ -7,6 +7,17 @@ This software is both a course look-up tool and a semester planner. Semesters ca
 
 ### PATCH NOTES:
 ```
+Ver 0.2.3 - 12/23/2015
+* Supports comma-separated course abbreviation search (ex. "bio,ch")
+* Hour-cap checker: will display hours in RED if semester exceeds hour-cap
+* Added missing Engineerng Studies (E S) and General Engineering (G E) courses
+* Formatting, Resizing
+* Bugfix
+
+Ver 0.2.2 - 11/12/2015
+* Update Checker now works
+* Fixed sizing/format issues
+
 Ver 0.2.1 - 11/12/2015
 * Added a "View List" button that displays all courses in a pop-up window
 * Added feature to search via keywords in course titles
