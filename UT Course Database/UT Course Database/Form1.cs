@@ -13,7 +13,7 @@ namespace UT_Course_Database
 {
     public partial class Form1 : Form
     {
-        Version applicationVersion = new Version("0.2.3");
+        Version applicationVersion = new Version("0.2.3.1");
 
         public static List<Course> list = new List<Course>();
         public static List<Field> fieldList = new List<Field>();
@@ -551,7 +551,7 @@ namespace UT_Course_Database
             string downloadUrlu = "";
             Version newVersion = null;
             Version newVersionu = null;
-            string xmlURL = "http://utsemman.netai.net/release/update.xml";
+            string xmlURL = "http://utsemman.netai.net/update.xml";
             XmlTextReader reader = null;
             try
             {
