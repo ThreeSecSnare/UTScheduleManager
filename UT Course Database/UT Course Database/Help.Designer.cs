@@ -41,7 +41,7 @@
             this.label1.Location = new System.Drawing.Point(16, 12);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(366, 25);
+            this.label1.Size = new System.Drawing.Size(290, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "UT Semester Manager 2014-2016";
             // 
@@ -69,7 +69,7 @@
             // Help
             // 
             this.AcceptButton = this.btnClose;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(527, 285);
             this.Controls.Add(this.btnClose);

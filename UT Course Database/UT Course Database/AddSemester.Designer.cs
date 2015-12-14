@@ -40,7 +40,7 @@
             this.tbYear.Location = new System.Drawing.Point(184, 46);
             this.tbYear.Margin = new System.Windows.Forms.Padding(4);
             this.tbYear.Name = "tbYear";
-            this.tbYear.Size = new System.Drawing.Size(132, 26);
+            this.tbYear.Size = new System.Drawing.Size(132, 22);
             this.tbYear.TabIndex = 0;
             // 
             // cbSem
@@ -49,12 +49,12 @@
             this.cbSem.FormattingEnabled = true;
             this.cbSem.Items.AddRange(new object[] {
             "Fall",
-            "Summer",
-            "Spring"});
+            "Spring",
+            "Summer"});
             this.cbSem.Location = new System.Drawing.Point(16, 46);
             this.cbSem.Margin = new System.Windows.Forms.Padding(4);
             this.cbSem.Name = "cbSem";
-            this.cbSem.Size = new System.Drawing.Size(160, 28);
+            this.cbSem.Size = new System.Drawing.Size(160, 24);
             this.cbSem.TabIndex = 1;
             // 
             // btnSubmit
@@ -71,17 +71,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 9);
+            this.label1.Location = new System.Drawing.Point(67, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(278, 20);
+            this.label1.Size = new System.Drawing.Size(207, 16);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Enter Semester and Numerical Year";
+            this.label1.Text = "Select a Semester && Enter a Year";
             // 
             // AddSemester
             // 
             this.AcceptButton = this.btnSubmit;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 144);
             this.Controls.Add(this.label1);

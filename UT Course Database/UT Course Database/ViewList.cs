@@ -17,9 +17,21 @@ namespace UT_Course_Database
         {
             InitializeComponent();
         }
-        public void setText(string text)
+        public void DisplayCourse(Course course)
         {
-            rtbViewList.Text = text;
+            //rtbViewList.Font = new Font(rtbViewList.Font, FontStyle.Bold);
+            rtbViewList.AppendText(course.ToString() + " - " + course.name);
+            //rtbViewList.Font = new Font(rtbViewList.Font, FontStyle.Regular);
+            rtbViewList.AppendText("\n\n" + course.description + "\n\n");
+
+            rtbViewList.SelectionStart = 0;
+            rtbViewList.ScrollToCaret();
+
+        }
+
+        public void Clear()
+        {
+            rtbViewList.Text = "";
         }
     }
 }

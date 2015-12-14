@@ -36,7 +36,11 @@ namespace UT_Course_Database
         {
             string h = code.Substring(0, 1);
             return Int32.Parse(h);
-            
+        }
+
+        public override string ToString()
+        {
+            return course + " " + code;
         }
     }
 }

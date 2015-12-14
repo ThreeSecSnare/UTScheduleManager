@@ -13,7 +13,7 @@ namespace UT_Course_Database
 {
     public partial class Form1 : Form
     {
-        Version applicationVersion = new Version("0.2.0");
+        Version applicationVersion = new Version("0.2.3");
 
         public static List<Course> list = new List<Course>();
         public static List<Field> fieldList = new List<Field>();
@@ -28,6 +28,7 @@ namespace UT_Course_Database
             comboBox1.Text = defaulttext;
             comboBox2.Text = defaulttext;
             comboBox3.Text = defaulttext;
+            tbHours.BackColor = System.Drawing.Color.LimeGreen;
 
             radioButton1.Checked = true;
 
@@ -75,7 +76,7 @@ namespace UT_Course_Database
         private void btnSearch_Click(object sender, EventArgs e)
         {
             lbSearchResults.Items.Clear();
-            rtbInfo.Clear();
+            rtbInfo.Clear(); 
 
             results = new List<Course>();
 
@@ -131,7 +132,7 @@ namespace UT_Course_Database
             {
                 foreach (Course c in results)
                 {
-                    lbSearchResults.Items.Add(c.course + " " + c.code);
+                    lbSearchResults.Items.Add(c);
                     //if (c.IsUpperDiv())
                         //var lbi= lbSearchResults.Items[lbSearchResults.Items.IndexOf(c.course + " " + c.code)] as ListBoxItem;
                 }
@@ -149,19 +150,27 @@ namespace UT_Course_Database
         {
             if (textbox.Text == "")
             {
-                MessageBox.Show("Please fill in the blank textbox", "Query");
+                MessageBox.Show("Please fill in the blank", "Query");
                 results.Clear();
                 return;
             }
-            string query = textbox.Text.ToUpper().Replace(" ", "");
+            string [] queries = textbox.Text.ToUpper().Replace(" ", "").Split(',');
+
+            bool p;
 
             foreach (Course c in results.ToList())
             {
-                if (c.course.Replace(" ", "") != query)
+                p = false;
+                for(int i = 0; i < queries.Length; i++)
                 {
-                    results.Remove(c);
+                    if (c.course.Replace(" ", "") == queries[i])
+                    {
+                        p = true;
+                    }
                 }
 
+                if (!p)
+                    results.Remove(c);
             }
         }
 
@@ -169,7 +178,7 @@ namespace UT_Course_Database
         {
             if (textbox.Text == "")
             {
-                MessageBox.Show("Please fill in the blank textbox", "Query");
+                MessageBox.Show("Please fill in the blank", "Query");
                 results.Clear();
                 return;
             }
@@ -189,7 +198,7 @@ namespace UT_Course_Database
         {
             if (textbox.Text == "")
             {
-                MessageBox.Show("Please fill in the blank textbox", "Query");
+                MessageBox.Show("Please fill in the blank", "Query");
                 results.Clear();
                 return;
             }
@@ -198,7 +207,7 @@ namespace UT_Course_Database
 
             foreach (Course c in results.ToList())
             {
-                if (!c.name.ToUpper().Replace(" ", "").Contains(query))
+                if (!c.name.ToUpper().Replace(" ", "").Contains(query)|| !c.description.ToUpper().Replace(" ", "").Contains(query))
                 {
                     results.Remove(c);
                 }
@@ -208,6 +217,13 @@ namespace UT_Course_Database
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
+            if(tbEnter.Text == "r")
+            {
+                Random r = new Random();
+                int randomIndex = (int)(r.NextDouble() * list.Count);
+                rtbOutput.Text = list[randomIndex].name + " (" + list[randomIndex].ToString() + ")\n\n" + list[randomIndex].description;
+            }
+
             string comp = tbEnter.Text.ToUpper().Replace(" ", "");
             
             foreach(Course c in list)
@@ -266,7 +282,8 @@ namespace UT_Course_Database
 
         public void UpdateSem(object sender, EventArgs e)
         {
-            lbSemesters.Items.Add(sem.sem + " " + sem.year);
+            Semester semester = new Semester(sem.sem, sem.year);
+            lbSemesters.Items.Add(semester);
             semList.Add(new Semester(sem.sem, sem.year));
             sem.Close();
             lbSemesters.SelectedIndex = 0;
@@ -298,9 +315,6 @@ namespace UT_Course_Database
                 {
                     lbCourses.Items.Add(semList[lbSemesters.SelectedIndex].list[i].course + " " + semList[lbSemesters.SelectedIndex].list[i].code);
                 }
-
-                btnAdd.Text = "Add To Semester (" + lbSemesters.Items[lbSemesters.SelectedIndex] + ")";
-
             }
             else
                 btnAdd.Text = "Add To Semester";
@@ -313,7 +327,7 @@ namespace UT_Course_Database
                 int hours = 0;
                 foreach (string n in lbCourses.Items)
                 {
-                    hours += toCourse(n).GetHours();
+                    hours += getCourse(n).GetHours();
                 }
                 tbHours.Text = hours + "";
             }
@@ -406,7 +420,7 @@ namespace UT_Course_Database
 
                     foreach (string k in courses)
                     {
-                        list1.Add(toCourse(k));
+                        list1.Add(getCourse(k));
                     }
 
                     semList.Add(new Semester(semester[0], semester[1], list1, notes));
@@ -471,7 +485,7 @@ namespace UT_Course_Database
                     }
                 }
 
-                tbHours.Text = int.Parse(tbHours.Text) - toCourse(lbCourses.Items[index].ToString()).GetHours() + "";
+                tbHours.Text = int.Parse(tbHours.Text) - getCourse(lbCourses.Items[index].ToString()).GetHours() + "";
 
                 lbCourses.Items.RemoveAt(index);
 
@@ -630,7 +644,7 @@ namespace UT_Course_Database
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        private Course toCourse(String s)
+        private Course getCourse(String s)
         {
             string k = s.ToUpper().Replace(" ", "");
 
@@ -693,20 +707,31 @@ namespace UT_Course_Database
 
         private void btnViewList_Click(object sender, EventArgs e)
         {
+            
             if (lbSearchResults.Items.Count == 0)
             {
                 MessageBox.Show("Please populate the course results box first", "View List");
                 return;
             }
-            string text = "";
+
             ViewList form = new ViewList();
             form.Show();
-            foreach (string course in lbSearchResults.Items)
+            foreach (Course course in lbSearchResults.Items)
             {
-                Course c = toCourse(course);
-                text += c.course + " " + c.code + " - " + c.name + "\n\n" + c.description + "\n\n";
+                form.DisplayCourse(course);
             }
-            form.setText(text);
+        }
+
+        private void tbHours_TextChanged(object sender, EventArgs e)
+        {
+            int u = 0;
+            Int32.TryParse(tbHours.Text, out u);
+            if (u > 17)
+            {
+                tbHours.BackColor = System.Drawing.Color.Red;
+            }
+            else
+                tbHours.BackColor = System.Drawing.Color.LimeGreen;
         }
     }
 }

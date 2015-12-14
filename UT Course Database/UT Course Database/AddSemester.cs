@@ -28,7 +28,7 @@ namespace UT_Course_Database
         {
             int k = 0;
             if (!Int32.TryParse(tbYear.Text, out k))
-                MessageBox.Show("Enter only numbers for the 'year' field.", "UT Semesters Manager");
+                MessageBox.Show("Please only enter integers for the 'year' field.", "UT Semesters Manager");
             else
             {
                 sem = cbSem.Text;

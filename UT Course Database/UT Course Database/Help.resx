@@ -125,6 +125,13 @@
 
 PATCH NOTES:
 
+Ver 0.2.3 - 12/23/2015
+-Supports comma-separated course abbreviation search (ex. "bio,ch")
+-Hour-cap checker: will display hours in RED if semester exceeds hour-cap
+-Added missing Engineerng Studies (E S) and General Engineering (G E) courses
+-Formatting, Resizing
+-Bugfix
+
 Ver 0.2.2 - 11/12/2015
 -Update Checker now works
 -Fixed sizing/format issues
