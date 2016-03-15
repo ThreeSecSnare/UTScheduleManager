@@ -2,11 +2,13 @@
 
 This software is both a course look-up tool and a semester planner. Semesters can be saved/loaded for subsequent uses. Does not support flags or checking pre-requisites/co-rerequisites.
 
-*Note
-* Type "M 427K" when searching for M 427J
-
 ### PATCH NOTES:
 ```
+Ver 0.2.3.2 - 3/15/2016
+*Added M 427J
+*Code optimization
+*Bugfixes
+
 Ver 0.2.3 - 12/23/2015
 * Supports comma-separated course abbreviation search (ex. "bio,ch")
 * Hour-cap checker: will display hours in RED if semester exceeds hour-cap
