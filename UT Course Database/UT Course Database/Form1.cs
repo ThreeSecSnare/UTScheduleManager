@@ -13,7 +13,7 @@ namespace UT_Course_Database
 {
     public partial class Form1 : Form
     {
-        Version applicationVersion = new Version("0.2.3.1");
+        Version applicationVersion = new Version("0.2.3.2");
 
         public static List<Course> list = new List<Course>();
         public static List<Field> fieldList = new List<Field>();
@@ -207,7 +207,7 @@ namespace UT_Course_Database
 
             foreach (Course c in results.ToList())
             {
-                if (!c.name.ToUpper().Replace(" ", "").Contains(query)|| !c.description.ToUpper().Replace(" ", "").Contains(query))
+                if (!c.name.ToUpper().Replace(" ", "").Contains(query) && !c.description.ToUpper().Replace(" ", "").Contains(query))
                 {
                     results.Remove(c);
                 }
@@ -256,20 +256,26 @@ namespace UT_Course_Database
             {
                 string comp = tbEnter.Text.ToUpper().Replace(" ", "");
 
-                foreach (Course c in list)
-                {
-                    if (c.course.Replace(" ", "") + c.code == comp)
+                Course testCourse = getCourse(comp);
+                if (testCourse == null)
+                    MessageBox.Show("Invalid Course", "Exception");
+                else {
+                    semList[lbSemesters.SelectedIndex].list.Add(getCourse(comp));
+                    lbCourses.Items.Add(getCourse(comp));
+                    semList[lbSemesters.SelectedIndex].notes.Add("");
+                    if (lbCourses.SelectedIndex == -1)
+                        lbCourses.SelectedIndex = 0;
+                    else
                     {
-                        semList[lbSemesters.SelectedIndex].list.Add(c);
-                        lbCourses.Items.Add(c.course + " " + c.code);
-                        tbHours.Text = int.Parse(tbHours.Text) + c.GetHours() + "";
-                        break;
+                        int k = lbCourses.SelectedIndex;                    //Roundabout way of maintaining index 
+                        lbSemesters_SelectedIndexChanged(sender, e);
+                        lbCourses.SelectedIndex = k;
                     }
                 }
             }
 
             else
-                MessageBox.Show("Select a semester", "UT Semester Manager");
+                MessageBox.Show("Select a semester", "Exception");
 
         }
 
@@ -282,24 +288,40 @@ namespace UT_Course_Database
 
         public void UpdateSem(object sender, EventArgs e)
         {
-            Semester semester = new Semester(sem.sem, sem.year);
-            lbSemesters.Items.Add(semester);
-            semList.Add(new Semester(sem.sem, sem.year));
+            Semester semester = new Semester(sem.sem, sem.year);    //Once AddSemester form closes,
+            lbSemesters.Items.Clear();                              //clear lbSemesters, sort then re-add
+            if (semList.Contains(semester))
+                MessageBox.Show("Cannot add duplicate semester", "Exception");
+            else {
+                semList.Add(semester);
+                semList.Sort();
+                foreach (Semester r in semList)
+                    lbSemesters.Items.Add(r);
+            }
             sem.Close();
             lbSemesters.SelectedIndex = 0;
         }
 
         private void btnRemSem_Click(object sender, EventArgs e)
         {
-            if(lbSemesters.SelectedIndex !=-1)
+            if (lbSemesters.SelectedIndex != -1)
+            {
+                semList.RemoveAt(lbSemesters.SelectedIndex);
+                lbSemesters.SelectedIndex -= 1;
                 lbSemesters.Items.RemoveAt(lbSemesters.SelectedIndex);
+                if (lbSemesters.Items.Count > 0 && lbSemesters.SelectedIndex < 0)
+                    lbSemesters.SelectedIndex = 0;
+
+            }
+
+            lbSemesters_SelectedIndexChanged(sender, e);
         }
 
         private void lbCourses_SelectedIndexChanged(object sender, EventArgs e)
         {
             rtbNotes.Clear();
             
-            if(lbCourses.SelectedIndex != -1)
+            if(lbCourses.SelectedIndex > -1 && (lbCourses.Items.Count > 0))
             {
                 rtbNotes.Text = semList[lbSemesters.SelectedIndex].notes[lbCourses.SelectedIndex];
             }
@@ -381,7 +403,7 @@ namespace UT_Course_Database
             {
                 text += s.semester + "\t" + s.year + "\n";
 
-                for(int i = 0; i < s.notes.Length; i++)
+                for(int i = 0; i < s.notes.Count; i++)
                 {
                     text += s.notes[i]+"`";
                 }
@@ -423,7 +445,14 @@ namespace UT_Course_Database
                         list1.Add(getCourse(k));
                     }
 
-                    semList.Add(new Semester(semester[0], semester[1], list1, notes));
+                    List<string> notes1 = new List<string>();
+
+                    foreach (string k in notes)
+                    {
+                        notes1.Add(k);
+                    }
+
+                    semList.Add(new Semester(semester[0], semester[1], list1, notes1));
                 }
 
                 foreach (Semester s in semList)
@@ -474,9 +503,9 @@ namespace UT_Course_Database
             if(index >= 0)
             {
                 semList[lbSemesters.SelectedIndex].list.RemoveAt(index);
-                semList[lbSemesters.SelectedIndex].notes[index] = "";
+                semList[lbSemesters.SelectedIndex].notes.RemoveAt(index);
 
-                for (int i = 0; i < semList[lbSemesters.SelectedIndex].notes.Length - 1; i++)
+                for (int i = 0; i < semList[lbSemesters.SelectedIndex].notes.Count - 1; i++)
                 {
                     if (semList[lbSemesters.SelectedIndex].notes[i] == "")
                     {
@@ -487,18 +516,10 @@ namespace UT_Course_Database
 
                 tbHours.Text = int.Parse(tbHours.Text) - getCourse(lbCourses.Items[index].ToString()).GetHours() + "";
 
+                lbCourses.SelectedIndex -= 1;
                 lbCourses.Items.RemoveAt(index);
-
-                if(lbCourses.Items.Count != 0)
-                {
-                    if(lbCourses.Items.Count > 1)
-                    {
-                        lbCourses.SelectedIndex = index - 1;
-                    }
-                    else
-                        lbCourses.SelectedIndex = 0;
-                }
-
+                if (lbCourses.SelectedIndex < 0 && lbCourses.Items.Count > 0)
+                    lbCourses.SelectedIndex = 0;
             }
         }
 
@@ -520,7 +541,7 @@ namespace UT_Course_Database
                 {
                     text += s.semester + "\t" + s.year + "\n";
 
-                    for (int i = 0; i < s.notes.Length; i++)
+                    for (int i = 0; i < s.notes.Count; i++)
                     {
                         text += s.notes[i] + "`";
                     }
