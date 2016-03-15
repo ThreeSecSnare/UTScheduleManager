@@ -24,14 +24,17 @@ namespace UT_Course_Database
             //rtbViewList.Font = new Font(rtbViewList.Font, FontStyle.Regular);
             rtbViewList.AppendText("\n\n" + course.description + "\n\n");
 
-            rtbViewList.SelectionStart = 0;
-            rtbViewList.ScrollToCaret();
-
         }
 
         public void Clear()
         {
             rtbViewList.Text = "";
+        }
+
+        public void ScrollToCaret()
+        {
+            rtbViewList.SelectionStart = 0;
+            rtbViewList.ScrollToCaret();
         }
     }
 }

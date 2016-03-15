@@ -736,11 +736,13 @@ namespace UT_Course_Database
             }
 
             ViewList form = new ViewList();
-            form.Show();
+            
             foreach (Course course in lbSearchResults.Items)
             {
                 form.DisplayCourse(course);
             }
+            form.ScrollToCaret();
+            form.Show();
         }
 
         private void tbHours_TextChanged(object sender, EventArgs e)
