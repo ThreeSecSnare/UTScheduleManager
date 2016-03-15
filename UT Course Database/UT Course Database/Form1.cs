@@ -224,16 +224,18 @@ namespace UT_Course_Database
                 rtbOutput.Text = list[randomIndex].name + " (" + list[randomIndex].ToString() + ")\n\n" + list[randomIndex].description;
             }
 
-            string comp = tbEnter.Text.ToUpper().Replace(" ", "");
-            
-            foreach(Course c in list)
+            Course c = getCourse(tbEnter.Text);
+
+            if (c != null)
             {
-                if (c.course.Replace(" ", "")+ c.code == comp)
-                {
-                    rtbOutput.Text = c.name + "\n\n" + c.description;
-                    break;
-                }
+                rtbOutput.Text = c.name + "\n\n" + c.description;
+                rtbOutput.SelectionStart = 0;
+                rtbOutput.ScrollToCaret();
             }
+            else if (tbEnter.Text.Equals(""))
+                MessageBox.Show("Enter a course", "Exception");
+            else
+                MessageBox.Show("Invalid Course", "Exception");
         }
 
         private void tbEnter_KeyDown(object sender, KeyEventArgs e)
